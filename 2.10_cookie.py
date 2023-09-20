@@ -7,8 +7,8 @@ import requests
 # print(dict(response.cookies))
 # print(response.headers)
 
-payload = {"login": "secret_login", "password": "secret_pass2"}
-response1 = requests.get("https://playground.learnqa.ru/api/get_auth_cookie", data=payload)
+payload = {"login": "secret_login", "password": "secret_pass"}
+response1 = requests.post("https://playground.learnqa.ru/api/get_auth_cookie", data=payload)
 cookie_value = response1.cookies.get('auth_cookie')
 cookies = {}
 if cookie_value is not None:
