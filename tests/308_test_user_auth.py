@@ -33,8 +33,9 @@ class TestUserAuth(BaseCase):
             response2,
             "user_id",
             self.user_id_from_auth_method,
-            f"User is authorized with condition{condition}"
+            "User id from auth method is not equal to user id from check method"
         )
+
 
     @pytest.mark.parametrize('condition', exclude_params)
     def test_negative_auth_check(self, condition):
@@ -42,17 +43,17 @@ class TestUserAuth(BaseCase):
         if condition == "no_cookie":
             response2 = requests.get(
             "https://playground.learnqa.ru/api/user/auth",
-            headers = {"x-csrf-token": self.token}
+            headers={"x-csrf-token": self.token}
             )
         else:
             response2 = requests.get(
             "https://playground.learnqa.ru/api/user/auth",
-            cookies= {"auth_sis": self.auth_sid}
+            cookies={"auth_sis": self.auth_sid}
             )
 
         Assertions.assert_json_value_by_name(
             response2,
             "user_id",
             0,
-            "User id from auth method is not equal to user id from check method"
+            f"User is authorized with condition {condition}"
         )

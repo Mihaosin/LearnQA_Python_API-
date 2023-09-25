@@ -6,13 +6,13 @@ class TestFirstAPI:
         name = 'Mihail'
         data = {'name':name}
 
-        responce = requests.get(url, params=data)
+        response = requests.get(url, params=data)
 
-        assert responce.status_code == 200, "Wrong responce cod"
+        assert response.status_code == 200, "Wrong response cod"
 
-        responce_dict = responce.json()
-        assert "answer" in responce_dict, "There is no field 'answer' in the responce"
+        responce_dict = response.json()
+        assert "answer" in responce_dict, "There is no field 'answer' in the response"
 
-        expected_responce_text = f"Hello, {name}"
+        expected_responce_text = "Hello, "+name
         actual_responce_text = responce_dict["answer"]
-        assert actual_responce_text == expected_responce_text, "Actual text in the responce is not correct"
+        assert actual_responce_text == expected_responce_text, "Actual text in the response is not correct"

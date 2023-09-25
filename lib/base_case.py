@@ -8,7 +8,7 @@ class BaseCase:
         return response.cookies[cookie_name]
 
     def get_header(self, response: Response, headers_name):
-        assert headers_name  in response.headers, f"Cannot find headers in {headers_name} in the last response"
+        assert headers_name in response.headers, f"Cannot find headers in {headers_name} in the last response"
         return response.headers[headers_name]
 
     def get_json_value(self, response: Response, name):
@@ -17,6 +17,6 @@ class BaseCase:
         except json.decoder.JSONDecoder:
             assert False, f"Response is not in JSON format. Response text is '{response.text}'"
 
-        assert  name in response_as_dict, f"Response JSON doesn't have key '{name}'"
+        assert name in response_as_dict, f"Response JSON doesn't have key '{name}'"
 
         return response_as_dict[name]
