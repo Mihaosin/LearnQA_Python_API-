@@ -1,10 +1,10 @@
 import requests
 from lib.base_case import BaseCase
-from lib.assertions import Assertions
 
-class TestUserRegisration(BaseCase):
+
+class TestUserRegistration(BaseCase):
     def test_create_user_with_existing_email(self):
-        email='vinkotov@example.com'
+        email = 'vinkotov@example.com'
         data = {
             'password': '123',
             'username': 'learnqa',
@@ -16,4 +16,5 @@ class TestUserRegisration(BaseCase):
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
         assert response.status_code == 400, f"Unexpected status code {response.status_code}"
-        assert response.content.decode("utf-8") == f"Users with email '{email}' already exists", f"Unexpected responce content{response.content}"
+        assert response.content.decode("utf-8") == f"Users with email '{email}' already exists", \
+            f"Unexpected response content{response.content}"
