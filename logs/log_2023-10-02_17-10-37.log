@@ -1,0 +1,48 @@
+
+-----
+Test: tests/506_test_user_get.py::TestUserGet::test_get_user_details_not_auth (call)
+Time: 2023-10-02 17:52:37.295189
+Request method: GET
+Request URL: https://playground.learnqa.ru/api/user/2
+Request data: None
+Request headers: {}
+Request cookies: {}
+
+Response code: 200
+Response text: {"username":"Vitaliy"}
+Response headers: {'Date': 'Mon, 02 Oct 2023 14:52:37 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Vary': 'Accept-Encoding', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Mon, 02 Oct 2023 14:52:36 GMT', 'Content-Encoding': 'gzip'}
+Response cookies: {}
+
+-----
+
+-----
+Test: tests/506_test_user_get.py::TestUserGet::test_get_user_details_auth_as_same_user (call)
+Time: 2023-10-02 17:52:37.991191
+Request method: POST
+Request URL: https://playground.learnqa.ru/api/user/login
+Request data: {'email': 'vinkotov@example.com', 'password': '1234'}
+Request headers: {}
+Request cookies: {}
+
+Response code: 200
+Response text: {"user_id":2}
+Response headers: {'Date': 'Mon, 02 Oct 2023 14:52:37 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Server': 'Apache', 'Set-Cookie': 'auth_sid=cf4b34251f1d453f2d777b47714bf06f02e94918f1549272bcf2cafc2634fd9d', 'x-csrf-token': '4aa260f4314bc08e345e83f24365237577f04c6402e94918f1549272bcf2cafc2634fd9d', 'Cache-Control': 'max-age=0', 'Expires': 'Mon, 02 Oct 2023 14:52:37 GMT'}
+Response cookies: {'auth_sid': 'cf4b34251f1d453f2d777b47714bf06f02e94918f1549272bcf2cafc2634fd9d'}
+
+-----
+
+-----
+Test: tests/506_test_user_get.py::TestUserGet::test_get_user_details_auth_as_same_user (call)
+Time: 2023-10-02 17:52:38.127189
+Request method: GET
+Request URL: https://playground.learnqa.ru/api/user/2
+Request data: None
+Request headers: {'x-csrf-token': '4aa260f4314bc08e345e83f24365237577f04c6402e94918f1549272bcf2cafc2634fd9d'}
+Request cookies: {'auth_sid': 'cf4b34251f1d453f2d777b47714bf06f02e94918f1549272bcf2cafc2634fd9d'}
+
+Response code: 200
+Response text: {"id":"2","username":"Vitaliy","email":"vinkotov@example.com","firstName":"Vitalii","lastName":"Kotov"}
+Response headers: {'Date': 'Mon, 02 Oct 2023 14:52:38 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=10', 'Vary': 'Accept-Encoding', 'Server': 'Apache', 'Cache-Control': 'max-age=0', 'Expires': 'Mon, 02 Oct 2023 14:52:37 GMT', 'Content-Encoding': 'gzip'}
+Response cookies: {}
+
+-----
