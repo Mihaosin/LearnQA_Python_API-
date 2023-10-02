@@ -30,7 +30,7 @@ class MyRequests():
             cookies = {}
 
         # Раскомментировать на седьмом занятии
-        Logger.add_request(url, data, headers, cookies, method)
+        # Logger.add_request(url, data, headers, cookies, method)
 
 
         if method == 'GET':
@@ -48,6 +48,7 @@ class MyRequests():
         else:
              raise Exception(f"Bad HTTP method '{method}' was received")
 
-        Logger.add_response(response)
+        # Раскомментировать на седьмом занятии
+        # Logger.add_response(response)
 
         return response
