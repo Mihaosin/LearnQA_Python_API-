@@ -62,7 +62,7 @@ class Test_user_agent:
         elif expected_device != actual_device:
             print(test_number, "Неправильный параметр DEVICE")
         # else:
-        #     print(test_number,"Все параметра совпадают")
+        #     print(test_number,"Все параметры совпадают")
 
 
         # print(".")

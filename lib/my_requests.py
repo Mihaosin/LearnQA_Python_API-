@@ -8,33 +8,33 @@ class MyRequests():
     @staticmethod
     def post(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
         # Раскомментировать на восьмом занятии
-        # with allure.step(f"POST request to URL {url}"):
-                return MyRequests._send(url, data, headers, cookies, 'POST')
+        with allure.step(f"POST request to URL {url}"):
+            return MyRequests._send(url, data, headers, cookies, 'POST')
 
     @staticmethod
     def get(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
         # Раскомментировать на восьмом занятии
-        # with allure.step(f"GET request to URL {url}"):
+        with allure.step(f"GET request to URL {url}"):
             return MyRequests._send(url, data, headers, cookies, 'GET')
 
     @staticmethod
     def put(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
         # Раскомментировать на восьмом занятии
-        # with allure.step(f"PUT request to URL {url}"):
+        with allure.step(f"PUT request to URL {url}"):
             return MyRequests._send(url, data, headers, cookies, 'PUT')
 
     @staticmethod
     def delete(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
         # Раскомментировать на восьмом занятии
-        # with allure.step(f"DELETE request to URL {url}"):
+        with allure.step(f"DELETE request to URL {url}"):
             return MyRequests._send(url, data, headers, cookies, 'DELETE')
 
     @staticmethod
     def _send(url: str, data: dict, headers: dict, cookies: dict, method: str):
 
-        url = f"https://playground.learnqa.ru/api{url}"
+        # url = f"https://playground.learnqa.ru/api{url}"
         # Раскомментировать на 9 занятии
-        # url = f"{ENV_OBJECT.get_base_url()}{url}"
+        url = f"{ENV_OBJECT.get_base_url()}{url}"
 
         if headers is None:
             headers = {}
@@ -42,8 +42,7 @@ class MyRequests():
             cookies = {}
 
         # Раскомментировать на седьмом занятии
-        # Logger.add_request(url, data, headers, cookies, method)
-
+        Logger.add_request(url, data, headers, cookies, method)
 
         if method == 'GET':
             response = requests.get(url, params=data, headers=headers, cookies=cookies)
@@ -61,6 +60,6 @@ class MyRequests():
              raise Exception(f"Bad HTTP method '{method}' was received")
 
         # Раскомментировать на седьмом занятии
-        # Logger.add_response(response)
+        Logger.add_response(response)
 
         return response

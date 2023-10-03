@@ -1,9 +1,10 @@
 import datetime
 import os
+from requests import Response
 
 
 class Logger:
-    file_name = f"logs/log_" + str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%m-%S")) + ".log"
+    file_name = f"logs/log_" + str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
 
     @classmethod
     def _write_log_to_file(cls, data: str):
@@ -11,7 +12,7 @@ class Logger:
             logger_file.write(data)
 
     @classmethod
-    def add_request(cls, url:str, data: dict, headers: dict, cookies: dict, method: str):
+    def add_request(cls, url: str, data: dict, headers: dict, cookies: dict, method: str):
         testname = os.environ.get('PYTEST_CURRENT_TEST')
 
         data_to_add = f"\n-----\n"
@@ -27,7 +28,7 @@ class Logger:
         cls._write_log_to_file(data_to_add)
 
     @classmethod
-    def add_response(cls, response):
+    def add_response(cls, response: Response):
         cookies_as_dict = dict(response.cookies)
         headers_as_dict = dict(response.headers)
 
