@@ -4,6 +4,8 @@ from lib.base_case import BaseCase
 from lib.assertions import Assertions
 from datetime import datetime
 import string
+import random
+
 
 
 class TestUserRegisration(BaseCase):
@@ -89,12 +91,31 @@ class TestUserRegisration(BaseCase):
     #     assert actual_answer == required_answer, "Нет диагностики об отсутствующем параметре"
 
     # - Создание пользователя с очень коротким именем в один символ
-    def test_create_user_with_short_name(self):
+    # def test_create_user_with_short_name(self):
+    #     email = 'mihail@example.com'
+    #     data = {
+    #         'password': '123',
+    #         'username': 'learnqa',
+    #         'firstName': '1',
+    #         'lastName': 'learnqa',
+    #         'email': email
+    #     }
+    #
+    #     response = MyRequests.post("/user/", data=data)
+    #
+    #     Assertions.assert_code_status(response, 400)
+    #     assert response.content.decode("utf-8") == "The value of 'firstName' field is too short"
+    #     print(response.content)
+
+    # - Создание пользователя с очень длинным именем - длиннее 250 символов
+    def test_create_user_with_long_name(self):
+        characters = string.ascii_lowercase + string.digits
+        firstName = ''.join([random.choice(characters) for _ in range(251)])
         email = 'mihail@example.com'
         data = {
             'password': '123',
             'username': 'learnqa',
-            'firstName': '1',
+            'firstName': firstName,
             'lastName': 'learnqa',
             'email': email
         }
@@ -102,12 +123,10 @@ class TestUserRegisration(BaseCase):
         response = MyRequests.post("/user/", data=data)
 
         Assertions.assert_code_status(response, 400)
-        assert response.content.decode("utf-8") == "The value of 'firstName' field is too short"
+        assert response.content.decode("utf-8") == "The value of 'firstName' field is too long"
         print(response.content)
 
-    # - Создание пользователя с очень длинным именем - длиннее 250 символов
-    #  firstName = ''.join("N" for i in range(251))
-     firstName = "A".join("B")
-    print(firstName)
+
+
 
 
